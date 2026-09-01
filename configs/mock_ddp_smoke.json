@@ -1,0 +1,71 @@
+{
+  "seed": 17,
+  "data": {
+    "name": "mock",
+    "train_episodes": 8,
+    "val_episodes": 2,
+    "frames_per_episode": 16,
+    "image_size": 56,
+    "joint_dim": 7,
+    "dino_dim": 16,
+    "seed": 17
+  },
+  "loader": {
+    "batch_size": 16,
+    "workers": 2,
+    "pin_memory": true,
+    "persistent_workers": true
+  },
+  "model": {
+    "backbone": {
+      "name": "tiny",
+      "output_dim": 64,
+      "patch_size": 7
+    },
+    "fusion": {
+      "dim": 128,
+      "depth": 2,
+      "heads": 4,
+      "mlp_ratio": 2.0,
+      "dropout": 0.0
+    },
+    "joint_residual_dim": 7,
+    "dino_residual_dim": 16
+  },
+  "loss": {
+    "huber_delta": 0.1,
+    "weights": {
+      "translation": 1.0,
+      "rotation": 1.0,
+      "joint": 0.5,
+      "gripper": 1.0,
+      "dino_vector": 1.0,
+      "dino_norm": 0.25,
+      "dino_direction": 0.1,
+      "energy": 1.0
+    }
+  },
+  "optimizer": {
+    "lr": 0.0003,
+    "backbone_lr": 0.0001,
+    "min_lr": 0.00001,
+    "weight_decay": 0.05,
+    "betas": [0.9, 0.95]
+  },
+  "distributed": {
+    "backend": "nccl",
+    "find_unused_parameters": false,
+    "static_graph": true
+  },
+  "trainer": {
+    "epochs": 2,
+    "precision": "bf16",
+    "gradient_accumulation_steps": 2,
+    "gradient_clip_norm": 1.0,
+    "log_every_steps": 5,
+    "eval_every_epochs": 1,
+    "checkpoint_every_epochs": 1,
+    "output_dir": "scratch/mock_ddp_smoke",
+    "max_eval_samples": 10000
+  }
+}

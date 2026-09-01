@@ -1,0 +1,28 @@
+{
+  "episodes": [
+    {
+      "id": "place_nameplate",
+      "task": "place_the_nameplate",
+      "episode_root": "real_data/Multiview_Benchmark/source_videos/FoundationModel/hys8.0/place_the_nameplate/13087/fangmingpai_R001GBDDAAAE0721_20260307_hys8.0_13087_15765/videos/chunk-000",
+      "episode_file": "episode_000060.mp4",
+      "start_sec": 23.4666666667,
+      "end_sec": 25.5333333333
+    },
+    {
+      "id": "adjust_chair",
+      "task": "adjust_the_chair_height_lever_and_push_in_the_chair",
+      "episode_root": "real_data/Multiview_Benchmark/source_videos/FoundationModel/office1.0/adjust_the_chair_height_lever_and_push_in_the_chair/28643/diaozhengyizigaoduganbingtuiruyizi_R001GBDDAAAE0277_20260429_office1.0_28643_28461/videos/chunk-000",
+      "episode_file": "episode_000023.mp4",
+      "start_sec": 15.6666666667,
+      "end_sec": 17.7333333333
+    },
+    {
+      "id": "open_washer",
+      "task": "open_washing_machine_door",
+      "episode_root": "real_data/Multiview_Benchmark/source_videos/FoundationModel/sportsmeeting4_3_2/open_washing_machine_door/34730/jiangyifufangruxiyiji_R001ABDD22AA0020_20260527_sportsmeeting4_3_2_34730_37486/videos/chunk-000",
+      "episode_file": "episode_000020.mp4",
+      "start_sec": 3.7333333333,
+      "end_sec": 5.8
+    }
+  ]
+}

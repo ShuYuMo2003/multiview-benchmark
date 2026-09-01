@@ -1,0 +1,95 @@
+{
+  "seed": 17,
+  "data": {
+    "name": "factory",
+    "factory": "mvbench.data.lerobot_factory:build_datasets",
+    "repo_id": "REPLACE_ME",
+    "root": null,
+    "revision": null,
+    "download_videos": true,
+    "video_backend": null,
+    "train_pair_plan": "REPLACE_WITH_TRAIN_PAIR_PLAN.npz",
+    "val_pair_plan": "REPLACE_WITH_VAL_PAIR_PLAN.npz",
+    "joint_dim": 7,
+    "dino_dim": 256,
+    "schema": {
+      "head_image_key": "observation.images.front_head",
+      "left_wrist_image_key": "observation.images.left_wrist",
+      "right_wrist_image_key": "observation.images.right_wrist",
+      "left_eef_position_key": "observation.state.left_eef_position",
+      "right_eef_position_key": "observation.state.right_eef_position",
+      "left_eef_rotation_key": "observation.state.left_eef_quaternion",
+      "right_eef_rotation_key": "observation.state.right_eef_quaternion",
+      "rotation_representation": "quat_xyzw",
+      "left_joint_key": "observation.state.left_joint_position",
+      "right_joint_key": "observation.state.right_joint_position",
+      "left_gripper_key": "observation.state.left_gripper_width",
+      "right_gripper_key": "observation.state.right_gripper_width",
+      "left_dino_key": "observation.features.left_wrist_dino_pca",
+      "right_dino_key": "observation.features.right_wrist_dino_pca",
+      "physical_cross_episode_valid": true,
+      "image_size": 518
+    }
+  },
+  "loader": {
+    "batch_size": 8,
+    "workers": 12,
+    "pin_memory": true,
+    "persistent_workers": true
+  },
+  "model": {
+    "backbone": {
+      "name": "dinov2",
+      "repo": "third_party/dinov2",
+      "model_name": "dinov2_vitg14_reg",
+      "pretrained": true,
+      "train_mode": "last_n",
+      "last_n_blocks": 4
+    },
+    "fusion": {
+      "dim": 768,
+      "depth": 6,
+      "heads": 12,
+      "mlp_ratio": 4.0,
+      "dropout": 0.0
+    },
+    "joint_residual_dim": 7,
+    "dino_residual_dim": 256
+  },
+  "loss": {
+    "huber_delta": 0.1,
+    "weights": {
+      "translation": 1.0,
+      "rotation": 1.0,
+      "joint": 0.5,
+      "gripper": 1.0,
+      "dino_vector": 1.0,
+      "dino_norm": 0.25,
+      "dino_direction": 0.1,
+      "energy": 1.0
+    }
+  },
+  "optimizer": {
+    "lr": 0.0002,
+    "backbone_lr": 0.000005,
+    "min_lr": 0.000001,
+    "weight_decay": 0.05,
+    "betas": [0.9, 0.95]
+  },
+  "distributed": {
+    "backend": "nccl",
+    "find_unused_parameters": false,
+    "static_graph": true
+  },
+  "trainer": {
+    "epochs": 20,
+    "precision": "bf16",
+    "gradient_accumulation_steps": 4,
+    "gradient_clip_norm": 1.0,
+    "log_every_steps": 20,
+    "eval_every_epochs": 1,
+    "checkpoint_every_epochs": 1,
+    "output_dir": "runs/dinov2_giant_pairwise",
+    "max_eval_samples": 200000
+  }
+}

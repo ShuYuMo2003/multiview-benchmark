@@ -1,0 +1,46 @@
+# Python bytecode, build output, and test caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Local environments and secrets
+.venv*/
+venv/
+.env
+.env.*
+!.env.example
+
+# Editor, OS, and local agent state
+.DS_Store
+.idea/
+.vscode/
+*.swp
+.agents/
+.codex/
+
+# Datasets, caches, checkpoints, and generated artifacts
+.cache/
+real_data/
+scratch/
+outputs/
+runs/
+storage/
+checkpoints/
+*.ckpt
+*.ckpt.part-*
+*.pth
+*.pt
+*.safetensors
+*.rrd
+
+# Upstream source trees are installed separately at pinned revisions documented
+# in THIRD_PARTY.md. Keeping them out avoids broken nested Git repositories and
+# accidental inclusion of multi-gigabyte model weights.
+third_party/
