@@ -8,6 +8,10 @@ Build a frame-level pairwise metric for whether a generated head view and one
 wrist view express the same robot/environment state. The shared model is run
 once for the left wrist and once for the right wrist.
 
+The full motivation, scope, non-goals, success criteria, and editable technical
+hypotheses live in `PROJECT_CHARTER.md`. This file tracks implementation status
+rather than redefining the benchmark purpose.
+
 ## Current implementation
 
 - Typed `PairBatch` and `PairMetricOutput` contracts.

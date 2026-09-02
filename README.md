@@ -83,6 +83,8 @@ semantics are explicitly verified.
 
 ## Persistent engineering context
 
-Start with [memory/PROJECT_STATE.md](memory/PROJECT_STATE.md), then read the
-design, data, evaluation, and experiment records linked from
+Start with the project purpose in
+[memory/PROJECT_CHARTER.md](memory/PROJECT_CHARTER.md), then read the current
+implementation status in [memory/PROJECT_STATE.md](memory/PROJECT_STATE.md).
+The design, data, evaluation, and experiment records are indexed by
 [memory/README.md](memory/README.md).
